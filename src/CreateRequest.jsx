@@ -58,6 +58,7 @@ function CreateRequest() {
             name="reqNo"
             variant="outlined"
             size="small"
+            onChange={handleChange}
           />
 
           <TextField
@@ -66,6 +67,7 @@ function CreateRequest() {
             name="vesselName"
             variant="outlined"
             size="small"
+            onChange={handleChange}
           />
 
           <select
