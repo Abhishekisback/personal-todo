@@ -25,6 +25,12 @@ function Navbar() {
         <NavLink to={"/contact-us"} className="navLinks">
           Contact Us
         </NavLink>
+        <NavLink to={"/login"} className="navLinks">
+          Login
+        </NavLink>
+        <NavLink to={"/signup"} className="navLinks">
+          Sign Up
+        </NavLink>
       </div>
       <UserInfo></UserInfo>
     </div>
