@@ -34,7 +34,7 @@ const columns = [
     field: "buyerRemarks",
     headerName: "Description",
     type: "number",
-    width: 110,
+    minWidth: 110,
     editable: true,
   },
   {
@@ -63,7 +63,8 @@ export default function MyRequests() {
   }, []);
 
   return (
-    <Box sx={{ height: "80vh", width: "100%" }}>
+    <Box sx={{ height: "80vh", width: "98%",margin:"auto" }}>
+    <h1>My Orders</h1>
       <DataGrid
         rows={orders.map((ele, i) => ({ ...ele, id: i + 1 }))}
         columns={columns}
