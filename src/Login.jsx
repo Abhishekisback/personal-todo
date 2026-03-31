@@ -2,22 +2,41 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigateTo = useNavigate();
 
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  function handlechange(e)
-  {
-     const {name,value}=e.target;
-     setLoginData((prev)=>({...prev,
-        [name]:value
-     }))
+  function handlechange(e) {
+    const { name, value } = e.target;
+    setLoginData((prev) => ({ ...prev, [name]: value }));
   }
-console.log(loginData);
+  console.log(loginData);
+
+  function handleLoginClick() {
+    axios
+      .post("http://localhost:7000/login", loginData)
+      .then((res) => {
+        if (res.status === 200) {
+          if (res.data === "authorized") {
+            Cookies.set("isUserVerified", "authorized");
+            window.location.href="/"
+          } else {
+            alert(res.data);
+          }
+        }
+      })
+      .catch((exe) => {
+        console.log(exe);
+      });
+  }
 
   return (
     <div className="LoginWrapper">
@@ -48,7 +67,12 @@ console.log(loginData);
           name="password"
           onChange={handlechange}
         />
-        <Button variant="contained" color="primary" size="large">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={handleLoginClick}
+        >
           Login
         </Button>
       </Box>

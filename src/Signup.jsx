@@ -17,16 +17,21 @@ function Signup() {
   console.log(signUpData);
 
   function handleSignup() {
-    axios
-      .post("http://localhost:7000/signup", signUpData)
-      .then((res) => {
-        if (res.status === 200) {
-          alert(res.data);
-        } else {
-          alert("error creating account");
-        }
-      })
-      .catch();
+    if (!signUpData?.email || !signUpData?.password || !signUpData?.name)
+    {
+      alert("please fill all required details");
+      return;
+    }
+      axios
+        .post("http://localhost:7000/signup", signUpData)
+        .then((res) => {
+          if (res.status === 200) {
+            alert(res.data);
+          } else {
+            alert("error creating account");
+          }
+        })
+        .catch();
   }
 
   return (
