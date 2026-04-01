@@ -25,8 +25,11 @@ function Login() {
       .post("http://localhost:7000/login", loginData)
       .then((res) => {
         if (res.status === 200) {
-          if (res.data === "authorized") {
+          console.log(res.data);
+          if (res.data?.email) {
             Cookies.set("isUserVerified", "authorized");
+            Cookies.set("userName",res?.data?.name);
+            Cookies.set("email",res?.data?.email);
             window.location.href="/"
           } else {
             alert(res.data);

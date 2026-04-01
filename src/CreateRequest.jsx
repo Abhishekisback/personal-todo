@@ -30,6 +30,7 @@ function CreateRequest() {
       .post("http://localhost:7000/createRequest", purchaseReq)
       .then((ack) => {
         alert(ack.data);
+        window.location.href="/my-orders";
       })
       .catch((err) => {
         console.log(err);
